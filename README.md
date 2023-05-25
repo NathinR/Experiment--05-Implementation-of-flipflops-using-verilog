@@ -125,7 +125,7 @@ initial Qbar = 1;
 always @(posedge clk)
 begin
 Q = S|((~R)&Q);
-Qbar = R|((~S)&(~Q));
+Qbar = R|((~S)&(~Qbar));
 end
 endmodule
 
@@ -138,11 +138,35 @@ initial Qbar = 1;
 always @(posedge clk)
 begin
 Q = (((~K)&Q)|(J&(~Q)));
-Qbar = ~Q; 
+Qbar = ((~J)&Qbar)|((~K)&(~Qbar)); 
 end
 endmodule
 
+iii] D flipflop
+module Dflipflop(D,Q,Qbar,clk);
+input D,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = D;
+Qbar = ~D;
+end
+endmodule
 
+iv] T flipflop
+module Tflipflop(T,Q,Qbar,clk);
+input T,clk;
+output reg Q,Qbar;
+initial Q = 0;
+initial Qbar = 1;
+always @(posedge clk)
+begin
+Q = ((T&(~Q))|((~T)&Q));
+Qbar = ((~T)&Qbar)|(T&(~Qbar));
+end
+endmodule
 ```
 
 
@@ -154,12 +178,11 @@ endmodule
 ### JK flipflop
 ![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/cbf60a74-2d62-4115-a89a-9f17b1d5c299)
 
+### D fli[pflop
+![Screenshot 2023-05-25 104641](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/455d23ef-4bf9-45f1-8388-c73cee77a9a6)
 
-
-
-
-
-
+### T flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/38b095b1-bcba-4994-8b94-c9d7ddf69a92)
 
 ## TIMING DIGRAMS FOR FLIP FLOPS 
 ### SR flipflop
@@ -168,11 +191,11 @@ endmodule
 ### JK flipflop
 ![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/6ad31ca6-c6ae-45fe-bb65-e99fe1304a46)
 
+### D flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/28031d4a-2c51-4aac-922d-7e17bf4c077a)
 
+### T flipflop
+![image](https://github.com/NathinR/Experiment--05-Implementation-of-flipflops-using-verilog/assets/118679646/3eaa8682-0e1a-4c45-a4c6-0130d5326471)
 
-
-
-
-
-### RESULTS 
+## RESULTS 
 All the flipflops are implementde using verilog and their functionality has been validated using their functional tables.
